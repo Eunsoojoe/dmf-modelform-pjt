@@ -15,8 +15,8 @@ def index(request):
 def create(request):
     # 모든 경우의 수
     # GET : form을 만들어서 html 문서를 사용자에게 리턴 => 1~4번.
-    # POST invalid data(데이터 검증에 실패한 경우)
-    # POST valid data(데이터 검증에 성공한 경우) 
+    # POST invalid data(데이터 검증에 실패한 경우) => 5~9번.
+    # POST valid data(데이터 검증에 성공한 경우) => 10~14번.
 
     # 기존
     # new/ => 빈 종이를 보여주는 기능
@@ -68,6 +68,10 @@ def create(request):
     # 4. create.html을 랜더링
     # 9. create.html을 랜더링
     return render(request, 'create.html', context)
+
     
-    # forms.py에서 만든 ArticleForm 인스턴스화
-    
+def delete(request, id):
+    article = Article.objects.get(id=id)
+    article.delete()
+
+    return redirect('articles:index')
