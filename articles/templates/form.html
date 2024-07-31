@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<h1>create</h1>
+
+{% if request.resolver_match.url_name == 'create' %}
+    <h1>create</h1>
+{% else %}
+    <h1>update</h1>
+{% endif %}
 
 <!-- 유효성 검사 -->
 <!-- django는 프론트엔드에서만 검증함 ex) 'required id' -->
