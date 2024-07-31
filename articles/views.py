@@ -71,7 +71,32 @@ def create(request):
 
     
 def delete(request, id):
-    article = Article.objects.get(id=id)
-    article.delete()
 
-    return redirect('articles:index')
+    if request.mothod == "POST":
+        article = Article.objects.get(id=id)
+        article.delete()
+        
+    return redirect('articles:index')   
+
+def update(request, id):
+    article = Article.object.get(id=id)
+    
+    if request.method == 'POST':    
+        form = ArticleForm(request.POST, instance=article)
+
+        if form.is_valid():
+            form.save()
+            return redirect('articles:index')
+
+
+    # else문 먼저 작동
+    # 기본 정보를 찾아서 보여주기
+    else:
+        # article = Article.object.get(id=id)
+        form = ArticleForm(instance=article)
+        
+    context = {
+        'form':form,
+    }
+
+    return render(request, 'update.html',context)
