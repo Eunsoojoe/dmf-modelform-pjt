@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<h1>create</h1>
+
+<!-- 유효성 검사 -->
+<!-- django는 프론트엔드에서만 검증함 ex) 'required id' -->
+<!-- 서버에서의 검증이 필요함. -->
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit">
+</form>
+
+{% endblock %}
